@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My Elm Client</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/openiconic/css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/game_style.css" />
+    <script type="text/javascript" src="elm.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var storedSession = window.sessionStorage.getItem("session");
+      storedSession = storedSession ? JSON.parse(storedSession) : null;
+
+      var app = Elm.Main.init({ flags: storedSession });
+
+      app.ports.storeSession.subscribe(function(session) {
+        window.sessionStorage.setItem("session", JSON.stringify(session));
+      });
+    </script>
+  </body>
+</html>
